@@ -1,17 +1,18 @@
 import Axios from "axios";
-
+let countries='';
 document.addEventListener("DOMContentLoaded", function() {
     fetchCountries();
 });
 
 function fetchCountries() {
     Axios.get('https://restcountries.eu/rest/v2/all').then(response => {
-        const countries = response.data;
+     countries = response.data;
         renderCountriesList(countries);
     });
 }
 
 function renderCountriesList(countries) {
+    document.getElementById('render-list-container').innerHTML='';
     let listsContainer = document.querySelector("#render-list-container");
     countries.forEach(country => {
         let li = document.createElement("li");
@@ -27,31 +28,10 @@ function renderCountriesList(countries) {
 
 let filterInput = document.getElementById('search');
 
-let search = () => {
-    let enteredValue = document.getElementById('search').value
-    let ul = document.getElementById('render-list-container');
-    let li = ul.querySelectorAll('li.list-group-item'); 
-  
-    //loop through the list
-    for(let i = 0; i < li.length; i++){
-        let getTagName = li[i].getElementsByTagName('li')[0];
-        console.log(getTagName);
-          if (getTagName) {
-
-            let text = getTagName.innerText;
-             // console.log(text)
-          /*  let value = (text.includes(enteredValue)) ? li[i].style.display = "none" : li[i].style.display = "block";
-            console.log(value) */
+filterInput.addEventListener('keyup',(data) => { 
+    let filteredCountries = countries.filter((dom)=>{
+      return dom.name.toLowerCase().includes(filterInput.value.toLowerCase());
+    });
     
-            /* if (text.includes(enteredValue)) {
-                li[i].style.display = "";
-            }
-            else {
-                li[i].style.display = "none";
-            } */
-        } 
-    
-    }
-
-}
-filterInput.addEv
+   renderCountriesList(filteredCountries);
+});

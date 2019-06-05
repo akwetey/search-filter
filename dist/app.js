@@ -2058,18 +2058,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
+var countries = '';
 document.addEventListener("DOMContentLoaded", function () {
   fetchCountries();
 });
 
 function fetchCountries() {
   axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://restcountries.eu/rest/v2/all').then(function (response) {
-    var countries = response.data;
+    countries = response.data;
     renderCountriesList(countries);
   });
 }
 
 function renderCountriesList(countries) {
+  document.getElementById('render-list-container').innerHTML = '';
   var listsContainer = document.querySelector("#render-list-container");
   countries.forEach(function (country) {
     var li = document.createElement("li");
@@ -2081,32 +2083,12 @@ function renderCountriesList(countries) {
 }
 
 var filterInput = document.getElementById('search');
-
-var search = function search() {
-  var enteredValue = document.getElementById('search').value;
-  var ul = document.getElementById('render-list-container');
-  var li = ul.querySelectorAll('li.list-group-item'); //loop through the list
-
-  for (var i = 0; i < li.length; i++) {
-    var getTagName = li[i]; // console.log(getTagName);
-
-    if (getTagName) {
-      var text = getTagName.innerText; // console.log(text)
-
-      /*  let value = (text.includes(enteredValue)) ? li[i].style.display = "none" : li[i].style.display = "block";
-        console.log(value) */
-
-      /* if (text.includes(enteredValue)) {
-          li[i].style.display = "";
-      }
-      else {
-          li[i].style.display = "none";
-      } */
-    }
-  }
-};
-
-filterInput.addEventListener('keyup', search);
+filterInput.addEventListener('keyup', function (data) {
+  var filteredCountries = countries.filter(function (dom) {
+    return dom.name.toLowerCase().includes(filterInput.value.toLowerCase());
+  });
+  renderCountriesList(filteredCountries);
+});
 
 /***/ }),
 
