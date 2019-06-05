@@ -2077,6 +2077,7 @@ function renderCountriesList(countries) {
     var li = document.createElement("li");
     var html = "<div class=\"mr-2\">\n                        <img src=\"".concat(country.flag, "\" width=\"30px;\" />\n                    </div> \n                    <div class=\"text\">").concat(country.name, "</div>");
     li.classList.add('list-group-item', 'd-flex', 'flex-row');
+    li.setAttribute('data-continent', "".concat(country.region));
     li.innerHTML = html;
     listsContainer.appendChild(li);
   });

@@ -21,6 +21,7 @@ function renderCountriesList(countries) {
                     </div> 
                     <div class="text">${country.name}</div>`;
         li.classList.add('list-group-item', 'd-flex', 'flex-row');
+        li.setAttribute('data-continent',`${country.region}`);
         li.innerHTML = html;
         listsContainer.appendChild(li);
     })
