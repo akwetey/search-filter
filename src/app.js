@@ -36,3 +36,28 @@ filterInput.addEventListener('keyup',(data) => {
     
    renderCountriesList(filteredCountries);
 });
+
+
+//checkboxes filter
+let itemsTofilter = document.getElementsByTagName('li');
+
+let checkBoxes = document.querySelectorAll('.custom-checkbox input');
+
+for(let i = 0; i < checkBoxes.length; i++){
+  checkBoxes[i].addEventListener('click', filterItems, false);
+  // checkBoxes[i].checked = true;
+}
+
+function filterItems (e) {
+    let clickedCheckbox = e.target;
+    if(clickedCheckbox.checked == true) {
+        console.log('hurayyyyyyyy');
+    }
+    else if(clickedCheckbox.checked == false){
+        console.log('maaaaa');
+    }
+
+    else{
+        console.log('mom')
+    }
+}

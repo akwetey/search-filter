@@ -2089,7 +2089,26 @@ filterInput.addEventListener('keyup', function (data) {
     return dom.name.toLowerCase().includes(filterInput.value.toLowerCase());
   });
   renderCountriesList(filteredCountries);
-});
+}); //checkboxes filter
+
+var itemsTofilter = document.getElementsByTagName('li');
+var checkBoxes = document.querySelectorAll('.custom-checkbox input');
+
+for (var i = 0; i < checkBoxes.length; i++) {
+  checkBoxes[i].addEventListener('click', filterItems, false); // checkBoxes[i].checked = true;
+}
+
+function filterItems(e) {
+  var clickedCheckbox = e.target;
+
+  if (clickedCheckbox.checked == true) {
+    console.log('hurayyyyyyyy');
+  } else if (clickedCheckbox.checked == false) {
+    console.log('maaaaa');
+  } else {
+    console.log('mom');
+  }
+}
 
 /***/ }),
 
