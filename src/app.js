@@ -45,19 +45,59 @@ let checkBoxes = document.querySelectorAll('.custom-checkbox input');
 
 for(let i = 0; i < checkBoxes.length; i++){
   checkBoxes[i].addEventListener('click', filterItems, false);
-  // checkBoxes[i].checked = true;
+  checkBoxes[i].checked = true;
 }
 
+//event handler
 function filterItems (e) {
     let clickedCheckbox = e.target;
     if(clickedCheckbox.checked == true) {
-        console.log('hurayyyyyyyy');
+       hideOrShow(clickedCheckbox.value, "hideItem", "showItem")
     }
     else if(clickedCheckbox.checked == false){
-        console.log('maaaaa');
+      hideOrShow(clickedCheckbox.value, "showItem", "hideItem")
     }
-
     else{
-        console.log('mom')
+        console.log('')
     }
+}
+
+//hide or show content
+function hideOrShow(itemType, classToRemove, classToAdd) {
+        for (let i = 0; i < itemsTofilter.length; i++) {
+        let currentItem = itemsTofilter[i];
+        if (currentItem.getAttribute('data-continent') == itemType) {
+            removeClass(currentItem, classToRemove);
+            addClass(currentItem, classToAdd);
+        }
+    }
+}
+
+function addClass(element, classToAdd) {
+    let currentClassValue = element.className;  
+    if (currentClassValue.indexOf(classToAdd) == -1) {
+        if ((currentClassValue == null) || (currentClassValue === "")) {
+            element.className = classToAdd;
+        } else {
+            element.className += " " + classToAdd;
+        }
+    }
+}
+
+function removeClass(element, classToRemove) {
+    let currentClassValue = element.className;
+    console.log(currentClassValue)
+    if (currentClassValue == classToRemove) {
+        element.className = "";
+        return;
+    }
+    let classValues = currentClassValue.split(" ");
+    let filteredList = [];
+  
+    for (let i = 0 ; i < classValues.length; i++) {
+        if (classToRemove != classValues[i]) {
+            filteredList.push(classValues[i]);
+        }
+    }
+    element.className = filteredList.join(" ");
 }
