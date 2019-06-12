@@ -2075,8 +2075,8 @@ function renderCountriesList(countries) {
   var listsContainer = document.querySelector("#render-list-container");
   countries.forEach(function (country) {
     var li = document.createElement("li");
-    var html = "<div class=\"mr-2\">\n                        <img src=\"".concat(country.flag, "\" width=\"30px;\" />\n                    </div> \n                    <div class=\"text\">").concat(country.name, "</div>");
-    li.classList.add('list-group-item', 'd-flex', 'flex-row');
+    var html = "<div class=\"mr-2 d-inline\">\n                        <img src=\"".concat(country.flag, "\" width=\"30px;\" />\n                    </div> \n                    <div class=\"text d-inline\">").concat(country.name, "</div>");
+    li.classList.add('list-group-item');
     li.setAttribute('data-continent', "".concat(country.region));
     li.innerHTML = html;
     listsContainer.appendChild(li);
@@ -2138,7 +2138,6 @@ function addClass(element, classToAdd) {
 
 function removeClass(element, classToRemove) {
   var currentClassValue = element.className;
-  console.log(currentClassValue);
 
   if (currentClassValue == classToRemove) {
     element.className = "";
