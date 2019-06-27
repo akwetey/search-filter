@@ -1,4 +1,5 @@
 import Axios from "axios";
+import nouiSlider from "nouislider";
 let countries = '';
 document.addEventListener("DOMContentLoaded", function() {
     fetchCountries();
