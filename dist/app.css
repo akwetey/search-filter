@@ -10670,3 +10670,7 @@ a.text-dark:focus {
   display: none !important;
 }
 
+#slider {
+  margin-top: 1.5rem;
+}
+

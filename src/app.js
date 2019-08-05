@@ -1,7 +1,8 @@
 import Axios from "axios";
-import nouiSlider from "nouislider";
+import noUiSlider from "nouislider";
+import 'nouislider/distribute/nouislider.min.css'
 let countries = '';
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     fetchCountries();
 });
 
@@ -99,3 +100,18 @@ function removeClass(element, classToRemove) {
     }
     element.className = filteredList.join(" ");
 }
+
+
+//slider
+let slider = document.getElementById('slider');
+
+
+noUiSlider.create(slider, {
+    start: [0, 100],
+    connect: false,
+    animate: false,
+    range: {
+        'min': 0,
+        'max': 100
+    }
+});

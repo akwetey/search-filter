@@ -1,8 +1,13 @@
 @import '~bootstrap/scss/bootstrap.scss';
+
 .showItem {
     display: block !important;
 }
 
 .hideItem {
     display: none !important;
+}
+
+#slider {
+    margin-top: 1.5rem;
 }
